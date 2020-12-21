@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="WinUIDemoApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUIDemoApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.DataGrid"
+    xmlns:coreconverter="using:Syncfusion.UI.Xaml.Core.Converters"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+    <Page.DataContext>
+        <local:OrderInfoViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <coreconverter:StringFormatConverter x:Key="stringFormatConverter" />        
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <syncfusion:SfDataGrid x:Name="sfDataGrid"
+                            AllowSorting="True"
+                            Height="500"
+                            Margin="5"
+                            SelectionMode="Multiple"   
+                            VerticalAlignment="Top"
+                            AutoGenerateColumns="False"
+                            ColumnWidthMode="AutoLastColumnFill"
+                            ItemsSource="{Binding OrdersDetails}">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn HeaderText="Order ID" MappingName="OrderID" TextAlignment="Right"/>
+                <syncfusion:GridTextColumn
+                                    DisplayBinding="{Binding OrderDate, Converter={StaticResource stringFormatConverter}, ConverterParameter=\{0:dd/MM/yyyy\}}"
+                                    HeaderText="Order Date"
+                                    TextAlignment="Right" />
+                <syncfusion:GridTextColumn HeaderText="Unit Price" DisplayBinding="{Binding UnitPrice, Converter={StaticResource stringFormatConverter}, ConverterParameter='{}{0:C}'}" MappingName="UnitPrice" TextAlignment="Right"/>
+                <syncfusion:GridTextColumn HeaderText="Quantity" MappingName="Quantity" TextAlignment="Right"/>
+                <syncfusion:GridTextColumn
+                                    DisplayBinding="{Binding ShippedDate, Converter={StaticResource stringFormatConverter}, ConverterParameter=\{0:dd/MM/yyyy\}}"
+                                    HeaderText="Shipped Date"
+                                    TextAlignment="Right" />
+                <syncfusion:GridTextColumn HeaderText="Ship City" MappingName="ShipCity" />
+                <syncfusion:GridTextColumn HeaderText="Ship Address" MappingName="ShipAddress" />
+
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+       
+        <StackPanel HorizontalAlignment="Center" Grid.Column="1">
+            <Button x:Name="printButton" Content="Print" Margin="10" Width="100" Click="printButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
