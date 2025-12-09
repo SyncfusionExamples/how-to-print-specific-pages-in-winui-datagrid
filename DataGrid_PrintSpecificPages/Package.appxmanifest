@@ -4,23 +4,25 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="efc496c9-ad62-41b9-b95f-0616d224ccd6"
-    Publisher="CN=SusmithaSundar"
+    Name="41ee4ad8-53ba-498c-8300-5aea7cbd7069"
+    Publisher="CN=MaliniSelvarasu"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="efc496c9-ad62-41b9-b95f-0616d224ccd6" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="41ee4ad8-53ba-498c-8300-5aea7cbd7069" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>WinUIDemoApp</DisplayName>
-    <PublisherDisplayName>SusmithaSundar</PublisherDisplayName>
+    <DisplayName>SfDataGrid_Demo</DisplayName>
+    <PublisherDisplayName>MaliniSelvarasu</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17134.0" MaxVersionTested="10.0.17134.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
 
   <Resources>
@@ -30,20 +32,20 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="WinUIDemoApp.App">
+      EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="WinUIDemoApp"
+        DisplayName="SfDataGrid_Demo"
+        Description="SfDataGrid_Demo"
+        BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="WinUIDemoApp"
-        BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust" />
   </Capabilities>
 </Package>
